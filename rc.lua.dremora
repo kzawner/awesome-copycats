@@ -65,7 +65,7 @@ editor     = os.getenv("EDITOR") or "nano" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
-browser    = "firefox"
+browser    = "chrome"
 gui_editor = "gvim"
 graphics   = "gimp"
 
@@ -120,6 +120,28 @@ mytextclock = awful.widget.textclock(markup(gray, " %a")
 
 -- Calendar
 lain.widgets.calendar.attach(mytextclock, { fg = white })
+
+-- Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { { "us", "" , "US" }, { "ua", "" , "UK" } }
+kbdcfg.current = 1  -- us is our default layout
+kbdcfg.widget = wibox.widget.textbox()
+kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+kbdcfg.switch = function ()
+  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+  local t = kbdcfg.layout[kbdcfg.current]
+  kbdcfg.widget:set_text(" " .. t[3] .. " ")
+  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+end
+
+-- Mouse bindings
+kbdcfg.widget:buttons(
+awful.util.table.join(
+    awful.button({ }, 1, function () kbdcfg.switch() end)
+   )
+)
+
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
@@ -303,6 +325,7 @@ for s = 1, screen.count() do
     right_layout:add(mpdwidget)
     --right_layout:add(mailwidget)
     right_layout:add(fshome)
+    right_layout:add(kbdcfg.widget)
     right_layout:add(batwidget)
     right_layout:add(volumewidget)
     right_layout:add(mytextclock)
@@ -475,7 +498,7 @@ globalkeys = awful.util.table.join(
     -- User programs
     awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
     awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
-    awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
+    --awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     --[[ Default
     -- Prompt
@@ -496,7 +519,26 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "x", function ()
         awful.util.spawn(string.format("dmenu_run -i -fn 'Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-		end)
+		end),
+
+  -- Alt + Left Shift switches the current keyboard layout
+  awful.key({ altkey }, "Shift_L", function () kbdcfg.switch() end),
+
+  -- clipmenu
+  awful.key({ modkey }, "p", function () os.execute("clipmenu") end),
+
+  -- passdmenu
+  awful.key({ modkey }, "d", function () os.execute("passdmenu") end),
+
+  -- mpdmenu
+  awful.key({ modkey }, "o", function () os.execute("mpdmenu -p") end),
+  awful.key({ modkey }, "i", function () os.execute("mpdmenu") end),
+
+  -- fm
+  awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
+
+  -- thunar
+  awful.key({ modkey }, "e", function () awful.util.spawn("thunar") end)
 )
 
 clientkeys = awful.util.table.join(
