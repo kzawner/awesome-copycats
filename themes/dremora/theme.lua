@@ -11,7 +11,7 @@ theme                               = {}
 theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/dremora"
 theme.wallpaper                     = theme.dir .. "/wall.png"
 
-theme.font                          = "Tamsyn 10.5"
+theme.font                          = "Tamsyn 8.5"
 theme.taglist_font                  = "Icons 10"
 theme.fg_normal                     = "#747474"
 theme.fg_focus                      = "#DDDCFF"

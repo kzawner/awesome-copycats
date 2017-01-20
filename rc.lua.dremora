@@ -48,7 +48,7 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-run_once("urxvtd")
+--run_once("urxvtd")
 run_once("unclutter -root")
 -- }}}
 
@@ -226,10 +226,17 @@ volumewidget = lain.widgets.alsa({
 })
 
 -- Weather
+--myweather = lain.widgets.weather({
+    --city_id = 702550, -- placeholder
+    --settings = function()
+        --w_notification_preset.fg = white
+    --end
+--})
 myweather = lain.widgets.weather({
-    city_id = 123456, -- placeholder
+    city_id = 702550, -- placeholder
     settings = function()
-        w_notification_preset.fg = white
+        units = math.floor(weather_now["main"]["temp"])
+        widget:set_text(" " .. units .. " ")
     end
 })
 
@@ -323,6 +330,8 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(first)
     right_layout:add(mpdwidget)
+    right_layout:add(myweather.icon)
+    right_layout:add(myweather)
     --right_layout:add(mailwidget)
     right_layout:add(fshome)
     right_layout:add(kbdcfg.widget)
