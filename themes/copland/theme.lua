@@ -1,9 +1,9 @@
 
 --[[
-                               
-     Copland Awesome WM config 
-     github.com/copycat-killer 
-                               
+                                   
+     Copland Awesome WM config 2.0 
+     github.com/copycat-killer     
+                                   
 --]]
 
 local theme                                     = {}
@@ -29,18 +29,12 @@ theme.titlebar_bg_focus                         = "#262626"
 theme.menu_height                               = 16
 theme.menu_width                                = 130
 
-theme.tasklist_sticky                           = ""
-theme.tasklist_ontop                            = ""
-theme.tasklist_floating                         = ""
-theme.tasklist_maximized_horizontal             = ""
-theme.tasklist_maximized_vertical               = ""
 theme.tasklist_disable_icon                     = true
 
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
-theme.submenu_icon                              = theme.dir .."/icons/submenu.png"
+theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_unsel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
-theme.widget_bg                                 = theme.dir .. "/icons/widget_bg.png"
 theme.vol                                       = theme.dir .. "/icons/vol.png"
 theme.vol_low                                   = theme.dir .. "/icons/vol_low.png"
 theme.vol_no                                    = theme.dir .. "/icons/vol_no.png"
@@ -52,6 +46,7 @@ theme.bat_low                                   = theme.dir .. "/icons/bat_low.p
 theme.bat_no                                    = theme.dir .. "/icons/bat_no.png"
 theme.play                                      = theme.dir .. "/icons/play.png"
 theme.pause                                     = theme.dir .. "/icons/pause.png"
+theme.stop                                      = theme.dir .. "/icons/stop.png"
 
 theme.layout_tile                               = theme.dir .. "/icons/tile.png"
 theme.layout_tileleft                           = theme.dir .. "/icons/tileleft.png"
@@ -66,30 +61,26 @@ theme.layout_fullscreen                         = theme.dir .. "/icons/fullscree
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
 
+theme.useless_gap                               = 0
+
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
-
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
 theme.titlebar_ontop_button_normal_active       = theme.dir .. "/icons/titlebar/ontop_normal_active.png"
 theme.titlebar_ontop_button_focus_inactive      = theme.dir .. "/icons/titlebar/ontop_focus_inactive.png"
 theme.titlebar_ontop_button_normal_inactive     = theme.dir .. "/icons/titlebar/ontop_normal_inactive.png"
-
 theme.titlebar_sticky_button_focus_active       = theme.dir .. "/icons/titlebar/sticky_focus_active.png"
 theme.titlebar_sticky_button_normal_active      = theme.dir .. "/icons/titlebar/sticky_normal_active.png"
 theme.titlebar_sticky_button_focus_inactive     = theme.dir .. "/icons/titlebar/sticky_focus_inactive.png"
 theme.titlebar_sticky_button_normal_inactive    = theme.dir .. "/icons/titlebar/sticky_normal_inactive.png"
-
 theme.titlebar_floating_button_focus_active     = theme.dir .. "/icons/titlebar/floating_focus_active.png"
 theme.titlebar_floating_button_normal_active    = theme.dir .. "/icons/titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_inactive   = theme.dir .. "/icons/titlebar/floating_focus_inactive.png"
 theme.titlebar_floating_button_normal_inactive  = theme.dir .. "/icons/titlebar/floating_normal_inactive.png"
-
 theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/maximized_focus_active.png"
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
-
-theme.useless_gap                               = 0
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
