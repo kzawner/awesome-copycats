@@ -146,7 +146,7 @@ local mytextclock = wibox.widget.textclock(markup(gray, " %a")
 -- Calendar
 lain.widgets.calendar.attach(mytextclock, {
     notification_preset = {
-        font = "Tamsyn 10.5",
+        font = "Misc Tamsyn, 10.5",
         fg   = white,
         bg   = beautiful.bg_normal
 }})
@@ -218,7 +218,7 @@ local mpdwidget = lain.widgets.mpd({
 local fshome = lain.widgets.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
-    notification_preset = { fg = white, bg = beautiful.bg_normal, font = "Tamsyn 10.5" },
+    notification_preset = { fg = white, bg = beautiful.bg_normal, font = "Misc Tamsyn, 10.5" },
     settings  = function()
         fs_header = ""
         fs_p      = ""
@@ -265,7 +265,7 @@ local myweather = lain.widgets.weather({
 })
 
 -- Separators
-local first     = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
+local first     = wibox.widget.textbox('<span font="Misc Tamsyn, 4"> </span>')
 local arrl_pre  = separators.arrow_right("alpha", "#1A1A1A")
 local arrl_post = separators.arrow_right("#1A1A1A", "alpha")
 
@@ -601,26 +601,25 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
+    --awful.key({ modkey }, "x",
+              --function ()
+                  --awful.prompt.run {
+                    --prompt       = "Run Lua code: ",
+                    --textbox      = awful.screen.focused().mypromptbox.widget,
+                    --exe_callback = awful.util.eval,
+                    --history_path = awful.util.get_cache_dir() .. "/history_eval"
+                  --}
+              --end,
+              --{description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
     --]]
 
-    --[[ dmenu
     awful.key({ modkey }, "x", function ()
-        awful.spawn(string.format("dmenu_run -i -fn 'Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+        awful.spawn(string.format("dmenu_run -i -fn 'Misc Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-		end)
+		end),
 
     -- Alt + Left Shift switches the current keyboard layout
     awful.key({ altkey }, "Shift_L", function () kbdcfg.switch() end),
@@ -641,7 +640,6 @@ globalkeys = awful.util.table.join(
       -- thunar
         awful.key({ modkey }, "e", function () awful.util.spawn("thunar") end)
 
-        --]]
 )
 
 clientkeys = awful.util.table.join(
