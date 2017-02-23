@@ -32,9 +32,9 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
+        --naughty.notify({ preset = naughty.config.presets.critical,
+                         --title = "Oops, an error happened!",
+                         --text = tostring(err) })
         in_error = false
     end)
 end
@@ -59,13 +59,13 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/dremora/theme.lua")
 
 -- common
-local modkey     = "Mod4"
-local altkey     = "Mod1"
+local modkey     = "Mod1"
+local altkey     = "Mod4"
 local terminal   = "urxvtc" or "xterm"
 local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
-local browser    = "chrome"
+local browser    = "chromium"
 local gui_editor = "gvim"
 local graphics   = "gimp"
 local tagnames   = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" }
@@ -234,6 +234,7 @@ local fshome = lain.widgets.fs({
 
 -- Battery
 local batwidget = lain.widgets.bat({
+    battery = "BAT1",
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -621,14 +622,14 @@ globalkeys = awful.util.table.join(
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
 		end),
 
-    -- Alt + Left Shift switches the current keyboard layout
-    awful.key({ altkey }, "Shift_L", function () kbdcfg.switch() end),
+    -- Ctrl + Left Shift switches the current keyboard layout
+    awful.key({ altkey }, " ", function () kbdcfg.switch() end),
 
       -- clipmenu
         awful.key({ modkey }, "p", function () os.execute("clipmenu") end),
 
       -- passdmenu
-        awful.key({ modkey }, "d", function () os.execute("passdmenu") end),
+        awful.key({ modkey }, "d", function () awful.util.spawn("passdmenu -x c") end),
 
       -- mpdmenu
         awful.key({ modkey }, "o", function () os.execute("mpdmenu -p") end),
