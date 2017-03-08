@@ -90,6 +90,21 @@ lain.widget.calendar({
         bg   = theme.bg_normal
 }})
 
+-- load the widget code
+local layout_indicator = require("keyboard-layout-indicator")
+
+-- define your layouts
+kbdcfg = layout_indicator({
+    layouts = {
+        {name="us",  layout="us",  variant=nil},
+        {name="ua",  layout="ua",  variant=nil}
+    }
+})
+
+--awful.key({ altkey }, "Shift_L", function() kbdcfg:next() end )
+--awful.key({ altkey, " " }, "Shift_R", function() kbdcfg:prev() end ),
+
+
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
 local mail = lain.widget.imap({
@@ -151,6 +166,7 @@ theme.fs = lain.widget.fs({
 
 -- Battery
 local bat = lain.widget.bat({
+    battery = "BAT1",
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -177,7 +193,7 @@ theme.volume = lain.widget.alsa({
 
 -- Weather
 theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
+    city_id = 702550,-- Lviv
     notification_preset = { fg = white }
 })
 
@@ -241,6 +257,7 @@ function theme.at_screen_connect(s)
             theme.fs.widget,
             bat.widget,
             theme.volume.widget,
+            kbdcfg.widget,
             mytextclock,
         },
     }

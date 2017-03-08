@@ -1,9 +1,9 @@
 
 --[[
-                                       
-     Awesome WM configuration template 
-     github.com/copycat-killer         
-                                       
+
+     Awesome WM configuration template
+     github.com/copycat-killer
+
 --]]
 
 -- {{{ Required libraries
@@ -59,13 +59,13 @@ run_once({ "urxvtd", "unclutter -root" })
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "multicolor"
+local chosen_theme = "dremora"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
-local browser      = "firefox"
+local browser      = "chromium"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
@@ -352,6 +352,10 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
     awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
 
+    awful.key({ altkey }, "Shift_L", function() kbdcfg:next() end ),
+    --awful.key({ altkey, " " }, "Shift_R", function() kbdcfg:prev() end ),
+
+
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
@@ -423,31 +427,48 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
 
+
+    -- clipmenu
+    awful.key({ modkey }, "p", function () os.execute("clipmenu") end),
+
+    -- passdmenu
+    awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c") end),
+
+    -- mpdmenu
+    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p") end),
+    awful.key({ modkey }, "i", function () os.execute("mpdmenu") end),
+
+    -- fm
+    awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
+
+    -- thunar
+    awful.key({ modkey }, "e", function () awful.util.spawn("thunar") end),
+
+
     -- Default
     --[[ Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
     --]]
-    --[[ dmenu
-    awful.key({ modkey }, "x", function ()
-        awful.spawn(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+    -- dmenu
+    awful.key({ modkey }, "r", function ()
+        awful.spawn(string.format("dmenu_run -i -fn 'Misc Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
 		end)
-    --]]
     -- Prompt
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    --awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
+              --{description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
+    --awful.key({ modkey }, "x",
+              --function ()
+                  --awful.prompt.run {
+                    --prompt       = "Run Lua code: ",
+                    --textbox      = awful.screen.focused().mypromptbox.widget,
+                    --exe_callback = awful.util.eval,
+                    --history_path = awful.util.get_cache_dir() .. "/history_eval"
+                  --}
+              --end,
+              --{description = "lua execute prompt", group = "awesome"})
     --]]
 )
 

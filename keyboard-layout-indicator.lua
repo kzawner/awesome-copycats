@@ -1,0 +1,1 @@
+awesome.keyboard-layout-indicator/keyboard-layout-indicator.lua
