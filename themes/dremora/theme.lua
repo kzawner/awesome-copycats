@@ -14,7 +14,7 @@ local os      = { getenv = os.getenv }
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/dremora"
-theme.wallpaper                                 = theme.dir .. "/wall.png"
+theme.wallpaper                                 = theme.dir .. "/6936336-beach-stones.jpg"
 theme.font                                      = "Misc Tamsyn 10.5"
 theme.taglist_font                              = "Icons 10"
 theme.fg_normal                                 = "#747474"
@@ -103,6 +103,19 @@ kbdcfg = layout_indicator({
 
 --awful.key({ altkey }, "Shift_L", function() kbdcfg:next() end )
 --awful.key({ altkey, " " }, "Shift_R", function() kbdcfg:prev() end ),
+
+local net_widgets = require("net_widgets")
+
+net_wired = net_widgets.indicator({
+    interfaces  = {"enp0s10"},
+    timeout     = 5
+})
+
+net_wireless = net_widgets.wireless({
+    interface="wlan0",
+    onclick=awful.util.terminal .. " -e sudo wifi-menu"
+})
+
 
 
 --[[ Mail IMAP check
@@ -258,6 +271,8 @@ function theme.at_screen_connect(s)
             bat.widget,
             theme.volume.widget,
             kbdcfg.widget,
+            net_wired,
+            net_wireless,
             mytextclock,
         },
     }
