@@ -429,14 +429,14 @@ globalkeys = awful.util.table.join(
 
 
     -- clipmenu
-    awful.key({ modkey }, "p", function () os.execute("clipmenu") end),
+    awful.key({ modkey }, "p", function () os.execute("clipmenu -fn 'Misc Tamsyn'") end),
 
     -- passdmenu
-    awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c") end),
+    awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
     -- mpdmenu
-    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p") end),
-    awful.key({ modkey }, "i", function () os.execute("mpdmenu") end),
+    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn'") end),
+    awful.key({ modkey }, "i", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn'") end),
 
     -- fm
     awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
