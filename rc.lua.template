@@ -434,6 +434,13 @@ globalkeys = awful.util.table.join(
     -- passdmenu
     awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
+    -- rofi
+    awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
+    awful.key({ modkey, "control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
+    awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
+    awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd") end),
+    awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass") end),
+
     -- mpdmenu
     awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn'") end),
     awful.key({ modkey }, "i", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn'") end),
