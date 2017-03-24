@@ -433,6 +433,7 @@ globalkeys = awful.util.table.join(
 
     -- passdmenu
     awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
+    awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
     -- rofi
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
