@@ -434,12 +434,18 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
     awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
+    -- netctl
+    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
+
+    -- clerk
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("clerk") end),
+
     -- rofi
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey, "control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
+    awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd") end),
-    awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass") end),
+    awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd -i") end),
+    awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
 
     -- mpdmenu
     awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn'") end),
