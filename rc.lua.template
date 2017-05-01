@@ -60,8 +60,8 @@ run_once({ "urxvtd", "unclutter -root" })
 
 -- {{{ Variable definitions
 local chosen_theme = "dremora"
-local modkey       = "Mod1"
-local altkey       = "Mod4"
+local modkey       = "Mod4"
+local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
@@ -459,6 +459,11 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
+
+    -- rofi-psas
+    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("rofi-pass") end),
+
+    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox") end),
 
     -- Default
     --[[ Menubar
