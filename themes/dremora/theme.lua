@@ -6,6 +6,10 @@
                                   
 --]]
 
+
+local beautiful = require("beautiful")
+beautiful.font = "Misc Tamsyn 10.5"
+
 local gears   = require("gears")
 local lain    = require("lain")
 local awful   = require("awful")
@@ -96,13 +100,27 @@ local layout_indicator = require("keyboard-layout-indicator")
 -- define your layouts
 kbdcfg = layout_indicator({
     layouts = {
-        {name="us",  layout="us",  variant=nil},
-        {name="ua",  layout="ua",  variant=nil}
+        {name=" us",  layout="us",  variant=nil},
+        {name=" ua",  layout="ua",  variant=nil}
     }
 })
 
 --awful.key({ altkey }, "Shift_L", function() kbdcfg:next() end )
 --awful.key({ altkey, " " }, "Shift_R", function() kbdcfg:prev() end ),
+
+local net_widgets = require("net_widgets")
+
+net_wired = net_widgets.indicator({
+    interfaces  = {"enp1s0"},
+    timeout     = 5
+})
+
+net_wireless = net_widgets.wireless({
+    interface="wlp2s0",
+    onclick=awful.util.terminal .. " -e sudo wifi-menu"
+})
+
+net_internet = net_widgets.internet({indent = 0, timeout = 5 })
 
 
 --[[ Mail IMAP check
@@ -258,6 +276,9 @@ function theme.at_screen_connect(s)
             theme.fs.widget,
             bat.widget,
             theme.volume.widget,
+            net_wired,
+            net_wireless,
+            net_internet,
             kbdcfg.widget,
             mytextclock,
         },

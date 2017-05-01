@@ -60,8 +60,8 @@ run_once({ "urxvtd", "unclutter -root" })
 
 -- {{{ Variable definitions
 local chosen_theme = "dremora"
-local modkey       = "Mod4"
-local altkey       = "Mod1"
+local modkey       = "Mod1"
+local altkey       = "Mod4"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
