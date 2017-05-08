@@ -465,6 +465,9 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox") end),
 
+    awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
+    awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
+
     -- Default
     --[[ Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
@@ -617,6 +620,9 @@ awful.rules.rules = {
 
     { rule = { class = "Chromium" },
       properties = { screen = 1, tag = screen[1].tags[2] } },
+
+    { rule = { class = "Transmission" },
+      properties = { screen = 1, tag = screen[1].tags[4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
