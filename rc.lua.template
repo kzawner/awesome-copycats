@@ -427,6 +427,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
 
 
+    -- mail
+    awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
+
+
     -- clipmenu
     awful.key({ modkey }, "p", function () os.execute("clipmenu -fn 'Misc Tamsyn'") end),
 
@@ -622,6 +626,9 @@ awful.rules.rules = {
       properties = { screen = 1, tag = screen[1].tags[2] } },
 
     { rule = { class = "Transmission" },
+      properties = { screen = 1, tag = screen[1].tags[5] } },
+
+    { rule = { class = "wavebox" },
       properties = { screen = 1, tag = screen[1].tags[4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
