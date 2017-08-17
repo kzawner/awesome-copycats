@@ -8,3 +8,6 @@
 [submodule "awesome.keyboard-layout-indicator"]
 	path = awesome.keyboard-layout-indicator
 	url = https://github.com/coldfix/awesome.keyboard-layout-indicator.git
+[submodule "net_widgets"]
+	path = net_widgets
+	url = https://github.com/pltanton/net_widgets.git
