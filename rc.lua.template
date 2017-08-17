@@ -68,6 +68,7 @@ local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
 local browser      = "chromium"
+local guieditor    = "atom"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
@@ -427,6 +428,8 @@ globalkeys = awful.util.table.join(
     -- User programs
     --awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
+    awful.key({ modkey }, "a", function () awful.spawn(guieditor) end),
+
 
 
     -- mail
