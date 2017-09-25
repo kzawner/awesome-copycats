@@ -444,10 +444,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
     -- netctl
-    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
+    -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
 
     -- clerk
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("clerk") end),
+
+    -- slock
+    awful.key({ "Control", "Shift" }, "Return", function () awful.util.spawn("slock") end),
 
     -- rofi
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
@@ -469,8 +472,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
-    -- rofi-psas
+    -- rofi-pass
     awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("rofi-pass") end),
+    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
 
     awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox") end),
 
