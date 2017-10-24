@@ -62,12 +62,12 @@ run_once({ "urxvtd", "unclutter -root" })
 
 -- {{{ Variable definitions
 local chosen_theme = "dremora"
-local modkey       = "Mod4"
-local altkey       = "Mod1"
+local modkey       = "Mod1"
+local altkey       = "Mod4"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
-local browser      = "chromium"
+local browser      = os.getenv("HOME").."/bin/chromium-remote-debug"
 local guieditor    = "atom"
 
 awful.util.terminal = terminal
@@ -216,7 +216,7 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "p", function() os.execute("screenshot") end),
 
     -- Hotkeys
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Control" }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -443,8 +443,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
     awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
+    -- maven scripts
+    awful.key({ "Control", "Shift"  }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
+    awful.key({ "Control", "Shift"  }, "l", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_start") end),
+    awful.key({ "Control", "Shift"  }, "k", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_stop") end),
+
     -- netctl
     -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
+    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/dmenu_netctl -i") end),
 
     -- clerk
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("clerk") end),
@@ -476,10 +482,18 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("rofi-pass") end),
     awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
 
-    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox") end),
+    -- rofi-psas
+    -- awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("rofi-pass") end),
+
+    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli start") end),
+    awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
 
     awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
+    awful.key({ modkey }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
     awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
+
+    awful.key({ modkey }, "t", function () awful.util.spawn("imgur-screenshot") end),
+    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("imgur-screenshot") end),
 
     -- Default
     --[[ Menubar

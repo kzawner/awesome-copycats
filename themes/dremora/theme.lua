@@ -111,12 +111,12 @@ kbdcfg = layout_indicator({
 local net_widgets = require("net_widgets")
 
 net_wired = net_widgets.indicator({
-    interfaces  = {"enp1s0"},
+    interfaces  = {"enp2s0f0"},
     timeout     = 5
 })
 
 net_wireless = net_widgets.wireless({
-    interface="wlp2s0",
+    interface="wlp3s0",
     onclick=awful.util.terminal .. " -e sudo wifi-menu"
 })
 
@@ -184,7 +184,7 @@ theme.fs = lain.widget.fs({
 
 -- Battery
 local bat = lain.widget.bat({
-    battery = "BAT1",
+    battery = "BAT0",
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
