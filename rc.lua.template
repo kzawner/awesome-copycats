@@ -466,8 +466,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
 
     -- mpdmenu
-    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn'") end),
-    awful.key({ modkey }, "i", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn'") end),
+    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn' -i -l 30") end),
+    awful.key({ modkey }, "i", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn' -i -l 30") end),
 
     -- fm
     awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
@@ -494,6 +494,11 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey }, "t", function () awful.util.spawn("imgur-screenshot") end),
     awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("imgur-screenshot") end),
+    -- misc
+    awful.key({ modkey, "Control"  }, "w", function () awful.util.spawn("sudo termite -e wifi-menu") end),
+
+    -- misc
+    --awful.key({ modkey, "v"  }, "v", function () awful.util.spawn("notify-send test") end),
 
     -- Default
     --[[ Menubar
