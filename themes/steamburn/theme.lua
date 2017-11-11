@@ -1,9 +1,8 @@
-
 --[[
-                                    
-     Steamburn Awesome WM theme 3.0 
-     github.com/copycat-killer      
-                                    
+
+     Steamburn Awesome WM theme 3.0
+     github.com/lcpz
+
 --]]
 
 local gears = require("gears")

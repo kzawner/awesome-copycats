@@ -1,13 +1,7 @@
 [submodule "lain"]
 	path = lain
-	url = git://github.com/copycat-killer/lain.git
+	url = git://github.com/lcpz/lain.git
 
 [submodule "freedesktop"]
 	path = freedesktop
-	url = git://github.com/copycat-killer/awesome-freedesktop.git
-[submodule "awesome.keyboard-layout-indicator"]
-	path = awesome.keyboard-layout-indicator
-	url = https://github.com/coldfix/awesome.keyboard-layout-indicator.git
-[submodule "net_widgets"]
-	path = net_widgets
-	url = https://github.com/pltanton/net_widgets.git
+	url = git://github.com/lcpz/awesome-freedesktop.git
