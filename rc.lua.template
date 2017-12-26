@@ -77,8 +77,8 @@ local themes = {
 
 local chosen_theme = themes[3]
 local guieditor    = "atom"
-local modkey       = "Mod1"
-local altkey       = "Mod4"
+local modkey       = "Mod4"
+local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
@@ -232,7 +232,7 @@ globalkeys = awful.util.table.join(
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- Hotkeys
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Shift"           }, "h",      hotkeys_popup.show_help,
               {description = "show help", group="awesome"}),
 
     -- Tag browsing
@@ -502,7 +502,7 @@ globalkeys = awful.util.table.join(
 
     -- netctl
     -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
-    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/dmenu_netctl -i") end),
+    -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/dmenu_netctl -i") end),
 
     -- clerk
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("clerk") end),
@@ -516,6 +516,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd -i") end),
     awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
+    awful.key({ modkey, "Shift" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
 
     -- mpdmenu
     awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn' -i -l 30") end),
