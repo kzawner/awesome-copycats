@@ -482,18 +482,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "a", function () awful.spawn(guieditor) end,
               {description = "run gui editor", group = "launcher"}),
 
-
-
     -- mail
     awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
 
-
     -- clipmenu
-    awful.key({ modkey }, "p", function () os.execute("clipmenu -fn 'Misc Tamsyn'") end),
+    awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
 
     -- passdmenu
-    awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
-    awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
+    --awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
     -- maven scripts
     awful.key({ "Control", "Shift"  }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
@@ -514,8 +510,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd -i") end),
-    awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
+    --awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd -i") end),
+    awful.key({ modkey }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
+    --awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
     awful.key({ modkey, "Shift" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
 
     -- mpdmenu
@@ -532,21 +529,18 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
     -- rofi-pass
-    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("rofi-pass") end),
+    awful.key({ modkey }, "d", function () awful.util.spawn("rofi-pass") end),
     awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
-
-    -- rofi-psas
-    -- awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("rofi-pass") end),
 
     awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli start") end),
     awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
 
     awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
     awful.key({ modkey }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
-    awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
+    awful.key({ modkey }, "t", function () awful.util.spawn("dofi") end),
 
-    awful.key({ modkey }, "t", function () awful.util.spawn("imgur-screenshot") end),
-    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("imgur-screenshot") end),
+    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end),
+    --awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("imgur-screenshot") end),
     -- misc
     awful.key({ modkey, "Control"  }, "w", function () awful.util.spawn("sudo termite -e wifi-menu") end),
 
@@ -704,9 +698,9 @@ awful.rules.rules = {
     { rule_any = { type = { "dialog", "normal" } },
       properties = { titlebars_enabled = true } },
 
-    -- Set Firefox to always map on the first tag on screen 1.
+    -- Set Firefox to always map on the seconds tag on screen 1.
     { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = awful.util.tagnames[1] } },
+      properties = { screen = 1, tag = awful.util.tagnames[2] } },
 
     { rule = { class = "Slack" },
       properties = { screen = 1, tag = screen[1].tags[3] } },
