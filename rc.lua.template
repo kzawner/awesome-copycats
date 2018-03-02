@@ -485,23 +485,16 @@ globalkeys = awful.util.table.join(
     -- mail
     awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
 
-    -- clipmenu
+    -- clipboard
     awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
-
-    -- passdmenu
-    --awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
 
     -- maven scripts
     awful.key({ "Control", "Shift"  }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
     awful.key({ "Control", "Shift"  }, "l", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_start") end),
     awful.key({ "Control", "Shift"  }, "k", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_stop") end),
 
-    -- netctl
-    -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("dmenu_netctl -i") end),
-    -- awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/dmenu_netctl -i") end),
-
     -- clerk
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("clerk") end),
+    awful.key({ modkey }, "l", function () awful.util.spawn("clerk") end),
 
     -- slock
     awful.key({ "Control", "Shift" }, "Return", function () awful.util.spawn("slock") end),
@@ -510,14 +503,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
-    --awful.key({ modkey  }, "l", function () awful.util.spawn("rofi-mpd -i") end),
     awful.key({ modkey }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
     --awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
-    awful.key({ modkey, "Shift" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
+    awful.key({ modkey, "Control" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
 
     -- mpdmenu
     awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn' -i -l 30") end),
-    awful.key({ modkey }, "i", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn' -i -l 30") end),
+    awful.key({ modkey, "Control" }, "o", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn' -i -l 30") end),
 
     -- fm
     awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
