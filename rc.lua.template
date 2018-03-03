@@ -218,14 +218,14 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end),
+    --awful.key({ altkey }, "p", function() os.execute("screenshot") end),
 
     -- X screen locker
-    awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
-              {description = "lock screen", group = "hotkeys"}),
+    --awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
+              --{description = "lock screen", group = "hotkeys"}),
 
     -- Hotkeys
-    awful.key({ modkey, "Control" }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Control" }, "h",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -435,13 +435,11 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
 
     -- User programs
-    --awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey, "Shift" }, "q", function () awful.spawn(browser) end),
-    awful.key({ modkey }, "a", function () awful.spawn(guieditor) end),
+    --awful.key({ modkey }, "a", function () awful.spawn(guieditor) end),
 
     awful.key({ modkey, "Shift" }, "v", function () awful.spawn("vncviewer") end),
     awful.key({ modkey, "Shift" }, "t", function () awful.spawn("transmission-gtk") end),
-
 
     -- mail
     awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
@@ -449,21 +447,12 @@ globalkeys = my_table.join(
     -- clipboard
     awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
 
-    -- clipmenu
-    --awful.key({ modkey }, "p", function () os.execute("clipmenu -fn 'Misc Tamsyn'") end),
-
-    -- passdmenu
-    --awful.key({ modkey  }, "d", function () awful.util.spawn("passdmenu -x c -- -fn 'Misc Tamsyn'") end),
-    --awful.key({ modkey, "Shift"  }, "d", function () awful.util.spawn("env PASSWORD_STORE_DIR=/home/abbyz/.password-store.private passdmenu -x c -- -fn 'Misc Tamsyn'") end),
-
     -- maven scripts
-    awful.key({ "Control", "Shift"  }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
-    awful.key({ "Control", "Shift"  }, "k", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_start") end),
-    awful.key({ "Control", "Shift"  }, "y", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_stop") end),
-    awful.key({ "Control", "Shift"  }, "y", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_stop") end),
-    awful.key({ "Control", "Shift"}, "g", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/vpnc-icon-kdocker") end),
-
+    awful.key({ "Control", "Shift" }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
+    awful.key({ "Control", "Shift" }, "k", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_start") end),
+    awful.key({ "Control", "Shift" }, "y", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_stop") end),
     --awful.key({ "Control", "Shift"  }, "c", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_check") end),
+    awful.key({ "Control", "Shift"}, "g", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/vpnc-icon-kdocker") end),
 
     -- clerk
     awful.key({ modkey }, "l", function () awful.util.spawn("clerk") end),
@@ -475,7 +464,6 @@ globalkeys = my_table.join(
     awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
     awful.key({ modkey  }, "x", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
     --awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
     awful.key({ modkey, "Control" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
 
@@ -493,46 +481,38 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
     -- rofi-pass
-    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn("rofi-pass") end),
-    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
+    awful.key({ modkey }, "d", function () awful.util.spawn("rofi-pass") end),
 
-    -- rofi-psas
-    -- awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("rofi-pass") end),
+    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
 
     awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli start") end),
     awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
 
     awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
     awful.key({ modkey }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
-    awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
+    awful.key({ modkey }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
+    --awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
 
-    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end),
+    -- Screenshots
 
-    -- Default
-    --[[ Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
-    --]]
-    -- dmenu
-    awful.key({ modkey }, "r", function ()
-        awful.spawn(string.format("dmenu_run -i -fn 'Misc Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
-        beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-		end)
-    -- Prompt
-    --awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              --{description = "run prompt", group = "launcher"}),
+    -- Actve client
+    awful.key({ modkey, "Control" }, "d", function ()
+        awful.spawn.with_shell(
+                "maim -i $(xdotool getactivewindow) ~/screenshots/$(date +%s).png")
+        naughty.notify({text = "Screenshot taken" })
+    end),
 
-    --awful.key({ modkey }, "x",
-              --function ()
-                  --awful.prompt.run {
-                    --prompt       = "Run Lua code: ",
-                    --textbox      = awful.screen.focused().mypromptbox.widget,
-                    --exe_callback = awful.util.eval,
-                    --history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  --}
-              --end,
-              --{description = "lua execute prompt", group = "awesome"})
-    --]]
+    awful.key({ modkey, "Control" }, "s", function ()
+            awful.spawn.with_shell(
+                    "maim -s ~/screenshots/$(date +%s).png")
+            naughty.notify({text = "Screenshot taken" })
+    end),
+
+    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end)
+    -- TODO:
+    -- selection and copy to clipboard
+    -- selection and edit
+    -- selection and feh to crop
 )
 
 clientkeys = my_table.join(
