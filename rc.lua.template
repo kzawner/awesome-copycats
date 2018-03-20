@@ -59,7 +59,7 @@ end
 
 run_once({ "unclutter -root" }) -- entries must be comma-separated
 
-run_once({ "urxvtd", "unclutter -root" })
+-- run_once({ "urxvtd", "unclutter -root" })
 -- }}}
 
 -- {{{ Variable definitions
@@ -67,7 +67,8 @@ local chosen_theme = "dremora"
 local modkey       = "Mod1"
 local altkey       = "Mod4"
 --local terminal     = "urxvtc" or "xterm"
-local terminal     = os.getenv("HOME").."/bin/urxvtc"
+--local terminal     = os.getenv("HOME").."/bin/urxvtc"
+local terminal     = "termite"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
 local browser      = os.getenv("HOME").."/bin/chromium-remote-debug"
@@ -225,7 +226,7 @@ globalkeys = my_table.join(
               --{description = "lock screen", group = "hotkeys"}),
 
     -- Hotkeys
-    awful.key({ modkey, "Control" }, "h",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Shift" }, "0",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -454,6 +455,8 @@ globalkeys = my_table.join(
     --awful.key({ "Control", "Shift"  }, "c", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/lsyncd_check") end),
     awful.key({ "Control", "Shift"}, "g", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/vpnc-icon-kdocker") end),
 
+    awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("MellowPlayer") end),
+
     -- clerk
     awful.key({ modkey }, "l", function () awful.util.spawn("clerk") end),
 
@@ -480,19 +483,22 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
+    awful.key({ modkey, "Control"  }, "m", function () awful.util.spawn("sudo termite -e wifi-menu") end),
+
     -- rofi-pass
     awful.key({ modkey }, "d", function () awful.util.spawn("rofi-pass") end),
 
     awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
 
-    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli start") end),
-    awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
+    awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli start") end),
+    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
 
     awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
-    awful.key({ modkey }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
+    awful.key({ modkey, "Control" }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
     awful.key({ modkey, "Control" }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
     --awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
 
+    awful.key({ modkey }, "t", function () awful.util.spawn("dofi") end),
 
     -- Screenshots
 
@@ -655,6 +661,9 @@ awful.rules.rules = {
 
     { rule = { class = "wavebox" },
       properties = { screen = 1, tag = screen[1].tags[4] } },
+
+    { rule = { class = "MellowPlayer" },
+      properties = { screen = 1, tag = screen[1].tags[5] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },

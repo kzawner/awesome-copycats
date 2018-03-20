@@ -183,7 +183,7 @@ theme.fs = lain.widget.fs({
 
 -- Battery
 local bat = lain.widget.bat({
-    battery = "BAT1",
+    battery = "BAT0",
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
