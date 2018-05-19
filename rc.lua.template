@@ -483,7 +483,8 @@ globalkeys = my_table.join(
     -- thunar
     awful.key({ modkey }, "e", function () awful.util.spawn("thunar") end),
 
-    awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
+    --awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
+    awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("signal-desktop") end),
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
     awful.key({ modkey, "Control"  }, "m", function () awful.util.spawn("sudo termite -e wifi-menu") end),
@@ -658,6 +659,9 @@ awful.rules.rules = {
       properties = { screen = 1, tag = awful.util.tagnames[2] } },
 
     { rule = { class = "Slack" },
+      properties = { screen = 1, tag = screen[1].tags[3] } },
+
+    { rule = { class = "Signal" },
       properties = { screen = 1, tag = screen[1].tags[3] } },
 
     { rule = { class = "Skype" },
