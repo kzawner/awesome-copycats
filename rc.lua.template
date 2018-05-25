@@ -1,5 +1,4 @@
 
-
 --[[
 
      Awesome WM configuration template
@@ -439,7 +438,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Shift" }, "q", function () awful.spawn(browser) end),
     --awful.key({ modkey }, "a", function () awful.spawn(guieditor) end),
 
-    awful.key({ modkey, "Shift" }, "v", function () awful.spawn("vncviewer") end),
+    --awful.key({ modkey, "Shift" }, "v", function () awful.spawn("vncviewer") end),
     awful.key({ modkey, "Shift" }, "t", function () awful.spawn("transmission-gtk") end),
 
     -- mail
@@ -447,6 +446,10 @@ globalkeys = my_table.join(
 
     -- clipboard
     awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
+
+
+    -- conky
+    awful.key({modkey, "Shift" }, "9", function () awful.spawn("bash -c '(pgrep conky && pkill conky) || conky'") end),
 
     -- maven scripts
     awful.key({ "Control", "Shift" }, "r", function () awful.util.spawn(os.getenv("HOME").."/bin/maven/rsync-dev-notify") end),
@@ -480,7 +483,8 @@ globalkeys = my_table.join(
     -- thunar
     awful.key({ modkey }, "e", function () awful.util.spawn("thunar") end),
 
-    awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
+    --awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("slack") end),
+    awful.key({ modkey, "Shift" }, "a", function () awful.util.spawn("signal-desktop") end),
     awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn("skypeforlinux") end),
 
     awful.key({ modkey, "Control"  }, "m", function () awful.util.spawn("sudo termite -e wifi-menu") end),
@@ -488,7 +492,10 @@ globalkeys = my_table.join(
     -- rofi-pass
     awful.key({ modkey }, "d", function () awful.util.spawn("rofi-pass") end),
 
-    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
+    -- Start netctl profile
+    awful.key({ modkey, "Control" }, "j", function () awful.util.spawn(os.getenv("HOME").."/bin/rofi-netctl") end),
+    -- Connect to active AP for which there is a netctl profile
+    awful.key({modkey, "Shift" }, "j", function () awful.spawn("bash -c '(notify-send \"Scanning for APs...\" && rofi-netctl -a)'") end),
 
     awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn("dropbox-cli start") end),
     awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("dropbox-cli stop") end),
@@ -496,6 +503,7 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "u", function () awful.util.spawn(os.getenv("HOME").."/bin/boosta") end),
     awful.key({ modkey, "Control" }, "k", function () awful.util.spawn("rofi -modi 'chrome:chrome-switch-tabs' -show chrome") end),
     awful.key({ modkey, "Control" }, "h", function () awful.util.spawn("rofi -modi 'chrome_history:/home/abbyz/bin/chrome_history' -show chrome_history -lines 30") end),
+    awful.key({ modkey, "Control" }, "b", function () awful.util.spawn("rofi -modi 'chrome_b:/home/abbyz/bin/chrome_bookmarks' -show chrome_b -lines 30 -matching normal") end),
     --awful.key({ modkey }, "t", function () awful.util.spawn(os.getenv("HOME").."/bin/todo-dmenu") end),
 
     awful.key({ modkey }, "t", function () awful.util.spawn("dofi") end),
@@ -515,11 +523,14 @@ globalkeys = my_table.join(
             naughty.notify({text = "Screenshot taken" })
     end),
 
-    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end)
+    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end),
+    --awful.key({ modkey, "Shift"  }, "v", function () awful.util.spawn("teiler --togglecast") end),
+    awful.key({modkey, "Shift" }, "v", function () awful.spawn("bash -c '(teiler --togglecast && notify-send \'Recording...\')'") end),
     -- TODO:
     -- selection and copy to clipboard
     -- selection and edit
     -- selection and feh to crop
+    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn("imgur-screenshot") end)
 )
 
 clientkeys = my_table.join(
@@ -648,6 +659,9 @@ awful.rules.rules = {
       properties = { screen = 1, tag = awful.util.tagnames[2] } },
 
     { rule = { class = "Slack" },
+      properties = { screen = 1, tag = screen[1].tags[3] } },
+
+    { rule = { class = "Signal" },
       properties = { screen = 1, tag = screen[1].tags[3] } },
 
     { rule = { class = "Skype" },
