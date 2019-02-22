@@ -478,6 +478,7 @@ globalkeys = my_table.join(
 
     -- User programs
     awful.key({ modkey, "Shift" }, "q", function () awful.spawn(browser) end),
+    awful.key({ modkey, "Shift" }, "f", function () awful.spawn("/usr/bin/firefox") end),
     --awful.key({ modkey }, "a", function () awful.spawn(guieditor) end),
 
     -- Default
@@ -496,6 +497,7 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
+    --[[
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -508,11 +510,13 @@ globalkeys = my_table.join(
               {description = "lua execute prompt", group = "awesome"}),
     --]]
 
+    --]]
     --awful.key({ modkey, "Shift" }, "v", function () awful.spawn("vncviewer") end),
     awful.key({ modkey, "Shift" }, "t", function () awful.spawn("transmission-gtk") end),
 
     -- mail
-    awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
+    --awful.key({ modkey, "Shift" }, "m", function () awful.spawn("wavebox") end),
+    awful.key({ modkey, "Shift" }, "m", function () awful.spawn("thunderbird") end),
 
     -- clipboard
     awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
@@ -736,6 +740,9 @@ awful.rules.rules = {
 
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = awful.util.tagnames[2] } },
+
+    { rule = { class = "Thunderbird" },
+      properties = { screen = 1, tag = awful.util.tagnames[4] } },
 
     { rule = { class = "Slack" },
       properties = { screen = 1, tag = screen[1].tags[3] } },
