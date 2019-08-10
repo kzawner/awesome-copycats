@@ -5,6 +5,10 @@
 
 --]]
 
+
+local beautiful = require("beautiful")
+beautiful.font = "Misc Tamsyn 10.5"
+
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
@@ -92,9 +96,38 @@ theme.cal = lain.widget.cal({
         bg   = theme.bg_normal
 }})
 
--- Mail IMAP check
---[[ commented because it needs to be set before use
-theme.mail = lain.widget.imap({
+-- load the widget code
+local layout_indicator = require("keyboard-layout-indicator")
+
+-- define your layouts
+kbdcfg = layout_indicator({
+    layouts = {
+        {name=" us",  layout="us",  variant=nil},
+        {name=" ua",  layout="ua",  variant=nil}
+    }
+})
+
+--awful.key({ altkey }, "Shift_L", function() kbdcfg:next() end )
+--awful.key({ altkey, " " }, "Shift_R", function() kbdcfg:prev() end ),
+
+local net_widgets = require("net_widgets")
+
+net_wired = net_widgets.indicator({
+    interfaces  = {"enp2s0f0"},
+    timeout     = 5
+})
+
+net_wireless = net_widgets.wireless({
+    interface="wlp3s0",
+    onclick=awful.util.terminal .. " -e sudo wifi-menu"
+})
+
+net_internet = net_widgets.internet({indent = 0, timeout = 5 })
+
+
+--[[ Mail IMAP check
+-- commented because it needs to be set before use
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -153,6 +186,8 @@ theme.fs = lain.widget.fs({
 
 -- Battery
 local bat = lain.widget.bat({
+    battery = "BAT0",
+    notify  = "off",
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -179,7 +214,7 @@ theme.volume = lain.widget.alsa({
 
 -- Weather
 theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
+    city_id = 702550,-- Lviv
     notification_preset = { fg = white }
 })
 
@@ -193,11 +228,11 @@ function theme.at_screen_connect(s)
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
     -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
+    --local wallpaper = theme.wallpaper
+    --if type(wallpaper) == "function" then
+        --wallpaper = wallpaper(s)
+    --end
+    --gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts)
@@ -245,6 +280,10 @@ function theme.at_screen_connect(s)
             --theme.fs.widget,
             bat.widget,
             theme.volume.widget,
+            net_wired,
+            net_wireless,
+            net_internet,
+            kbdcfg.widget,
             mytextclock,
         },
     }

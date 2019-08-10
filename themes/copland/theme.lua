@@ -11,7 +11,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 
-local awesome, client, os = awesome, client, os
+local os = { execute = os.execute, getenv = os.getenv, setlocale = os.setlocale }
+local awesome, client = awesome, client
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
