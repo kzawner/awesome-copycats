@@ -6,7 +6,7 @@
 	path = freedesktop
 	url = git://github.com/copycat-killer/awesome-freedesktop.git
 [submodule "awesome.keyboard-layout-indicator"]
-	path = awesome.keyboard-layout-indicator
+	path = keyboard-layout-indicator
 	url = https://github.com/coldfix/awesome.keyboard-layout-indicator.git
 [submodule "net_widgets"]
 	path = net_widgets

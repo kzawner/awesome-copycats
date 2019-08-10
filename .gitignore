@@ -4,3 +4,5 @@ theme-personal.lua
 .luacheckrc
 lain
 awesome-freedesktop
+keyboard-layout-indicator/
+net_widgets
