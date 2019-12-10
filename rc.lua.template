@@ -541,7 +541,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Shift" }, "m", function () awful.spawn("thunderbird") end),
 
     -- clipboard
-    awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Misc Tamsyn'") end),
+    awful.key({ modkey }, "p", function () os.execute("roficlip -fn 'Terminus'") end),
 
 
     -- conky
@@ -563,15 +563,15 @@ globalkeys = my_table.join(
     awful.key({ "Control", "Shift" }, "Return", function () awful.util.spawn("slock") end),
 
     -- rofi
-    awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Misc Tamsyn,14'") end),
-    awful.key({ modkey  }, "r", function () awful.util.spawn("rofi -show run -font 'Misc Tamsyn,14'") end),
+    awful.key({ modkey  }, "`", function () awful.util.spawn("rofi -show windowcd -font 'Terminus,14'") end),
+    awful.key({ modkey, "Control"  }, "`", function () awful.util.spawn("rofi -show window -font 'Terminus,14'") end),
+    awful.key({ modkey  }, "r", function () awful.util.spawn("rofi -show run -font 'Terminus,14'") end),
     --awful.key({ modkey  }, "]", function () awful.util.spawn("rofi-pass -i") end),
     awful.key({ modkey, "Control" }, "k", function () awful.util.spawn(os.getenv("HOME").."/packages/dmenu-suite/scripts/killmenu") end),
 
     -- mpdmenu
-    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Misc Tamsyn' -i -l 30") end),
-    awful.key({ modkey, "Control" }, "o", function () os.execute("mpdmenu :: -fn 'Misc Tamsyn' -i -l 30") end),
+    awful.key({ modkey }, "o", function () os.execute("mpdmenu -p :: -fn 'Terminus' -i -l 30") end),
+    awful.key({ modkey, "Control" }, "o", function () os.execute("mpdmenu :: -fn 'Terminus' -i -l 30") end),
 
     -- fm
     awful.key({ modkey }, "g", function () os.execute("dmenfm") end),
